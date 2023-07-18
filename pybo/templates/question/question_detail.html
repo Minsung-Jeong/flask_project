@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>내가 간다</title>
+</head>
+<body>
+      {% if question %}
+        <h1>질문 : {{ question.subject }}</h1>
+        <ul>
+            <li>{{question}}</li>
+            <li>{{ question.id }}</li>
+            <li>질문:{{ question.content }}</li>
+            <li>질문일:{{ question.create_date}}</li>
+        </ul>
+
+        <h2>{{question.answer_set|length}} 개의 기등록된 답변</h2>
+        <ul>
+            {% for answer in question.answer_set %}
+            <li>{{ answer.content }}</li>
+    {% endfor %}
+        </ul>
+
+        <form action="{{ url_for('answer.create', question_id=question.id) }}" method="post">
+        <textarea name="content" id="content" rows="15"></textarea>
+        <input type="submit" value="답변등록">
+        </form>
+    {% else %}
+      <p>해당 질문에 대한 데이터를 찾을 수 없습니다.</p>
+    {% endif %}
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% if question_list %}
+        <ul>
+        {% for question in question_list %}
+<!--            <li><a href="/question/detail/{{ question.id }}/">{{ question.subject }}</a></li>-->
+
+
+            <!--   _Question = Blueprint에서 지정한 별칭, detail = 선언했던 함수, question_id = 함수의 매개변수, question.id=html상으로 받은 데이터-->
+            <li><a href="{{url_for('_Question.detail', question_id= question.id)}}">{{ question.subject }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>질문이 없습니다.</p>
+    {% endif %}다
+</body>
+</html>
